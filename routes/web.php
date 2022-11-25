@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/prova', function () {
+    return view('prova');
+})->middleware(['auth'])->name('prova');
+
 Route::middleware(['autenticacio'])->group(function (){
     //TOTES LES URLS PRIVADES
     Route::get('/privada1', function() {
@@ -39,10 +43,10 @@ Route::middleware(['autenticacio'])->group(function (){
 //    return view('dashboard');
 //})->middleware(['auth', 'verified'])->name('dashboard');
 //
-//Route::middleware('auth')->group(function () {
-//    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//});
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 require __DIR__.'/auth.php';
